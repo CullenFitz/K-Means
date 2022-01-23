@@ -24,16 +24,17 @@ image = image.reshape((image.shape[1]*image.shape[0],3))
 kmeans = KMeans(n_clusters=5)
 s = kmeans.fit(image)
 
-#These are the values that are assigned to each pixel
+#These are the values that are assigned to each pixel. Labels is the array that we want to average
 labels = kmeans.labels_
-with np.printoptions(threshold=np.inf):
-    print(labels)
-#print(labels)
-labels = list(labels)
+print(labels)
+#labels = list(labels)
+"""with np.printoptions(threshold=np.inf):
+    print(labels)"""
 
+"""
 #K arrays of 3 values. Each value represents an RGB value respectively
 centroid = kmeans.cluster_centers_
-print(centroid)
+print(centroid)"""
 
 """percent = []
 for i in range(len(centroid)):
