@@ -22,12 +22,36 @@ def kmeans(k):
 
         # These are the values that are assigned to each pixel. Labels is the array that we want to average
         labels = kmeans.labels_
-        # print(labels)
-        labels = list(labels)
+        labels = list(labels)   #needed for counting values
 
+        #add this new array to finArr
+        finArr.append(labels)
 
+    #keep track of percentages for each iteration
+    percents = []
+    for i in range(k):
+        totOcc = 0
+        totDen = 0
+        for j in finArr:
+            occ = j.count(i)
+            totOcc = totOcc + occ
+            totDen = totDen + len(j)
+        total = totOcc / totDen
+        percents.append(total)
+    print(percents)
 
-kmeans(3)
+    #find percentages of clusters using matrices from finArr
+kmeans(5)
+
+"""
+    percent = []
+    for i in finArr:
+        for j in range(k):
+            h = i.count(j)
+            h = h / (len(labels))
+            percent.append(j)
+    print(percent)
+"""
 
 
     
