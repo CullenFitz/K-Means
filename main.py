@@ -1,48 +1,58 @@
 from sklearn.cluster import KMeans
+import seaborn as sns
 import matplotlib.pyplot as plt
 import cv2
-import argparse
-import utils
 import numpy as np
 
-#Given an image, compute a K-Means cluster
 
-image = cv2.imread(r"C:\Users\Cullen\Pictures\Camera Roll\PicOfMe.PNG")
-image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-"""with np.printoptions(threshold=np.inf):
-    print(image)"""
+# Main function
+def kmeans(k):
+    # image to be used
+    image = cv2.imread(r"C:\Users\Cullen\Pictures\Camera Roll\PicOfMe.PNG")
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-"""plt.figure()
-plt.axis("off")
-plt.imshow(image)
-plt.show()"""
+    # reshape image matrix
+    image = image.reshape((image.shape[1] * image.shape[0], 3))
 
-#reshape matrix
-image = image.reshape((image.shape[1]*image.shape[0],3))
+    finArr = []
+    for i in range(10):
+        kmeans = KMeans(n_clusters=k)
+        s = kmeans.fit(image)
 
-#Use the K-Means algorithm
-kmeans = KMeans(n_clusters=5)
-s = kmeans.fit(image)
+        # These are the values that are assigned to each pixel. Labels is the array that we want to average
+        labels = kmeans.labels_
+        #labels = list(labels)
+        finArr.append(labels)
+        #print(finArr[i])
 
-#These are the values that are assigned to each pixel. Labels is the array that we want to average
-labels = kmeans.labels_
-print(labels)
-#labels = list(labels)
-"""with np.printoptions(threshold=np.inf):
-    print(labels)"""
+    plot = []
+    for i in range(k):
+        finMat = []
+        for j in range(len(finArr[0])):
+            temp = []
+            for n in range(10):
+                temp.append(finArr[n][j])
+            tot = temp.count(i)
+            tot = tot / 10
+            finMat.append(tot)
+        finMat = np.reshape(finMat, (-1, 2))
 
-"""
-#K arrays of 3 values. Each value represents an RGB value respectively
-centroid = kmeans.cluster_centers_
-print(centroid)"""
+        heat_map = sns.heatmap(finMat, vmin= 0, vmax = 1,center=0, cmap='gist_ncar')
+        plt.show()
 
-"""percent = []
-for i in range(len(centroid)):
-    j = labels.count(i)
-    j = j / (len(labels))
-    percent.append(j)
-print(percent)
 
-plt.pie(percent, colors=np.array(centroid/255), labels = np.arange(len(centroid)))
-plt.show()
-"""
+        #print(finMat)
+
+
+
+
+
+    """print(finArr[0][0])
+    print(finArr[1][0])
+    print(finArr[2][0])
+    print(finArr[3][0])"""
+
+    #print(finMat)
+
+
+kmeans(3)

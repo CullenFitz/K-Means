@@ -1,4 +1,6 @@
+import numpy
 from sklearn.cluster import KMeans
+import seaborn as sns
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
@@ -27,6 +29,10 @@ def kmeans(k):
         #add this new array to finArr
         finArr.append(labels)
 
+    for i in finArr:
+        finMat = numpy.column_stack((i, i+i))
+    print(finMat)
+
     #keep track of percentages for each iteration
     percents = []
     for i in range(k):
@@ -41,17 +47,4 @@ def kmeans(k):
     print(percents)
 
     #find percentages of clusters using matrices from finArr
-kmeans(5)
-
-"""
-    percent = []
-    for i in finArr:
-        for j in range(k):
-            h = i.count(j)
-            h = h / (len(labels))
-            percent.append(j)
-    print(percent)
-"""
-
-
-    
+kmeans(3)
