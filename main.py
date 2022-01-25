@@ -25,7 +25,7 @@ def kmeans(k):
         finArr.append(labels)
         #print(finArr[i])
 
-    plot = []
+    plots = []
     for i in range(k):
         finMat = []
         for j in range(len(finArr[0])):
@@ -35,9 +35,14 @@ def kmeans(k):
             tot = temp.count(i)
             tot = tot / 10
             finMat.append(tot)
+        #print(finMat)
         finMat = np.reshape(finMat, (-1, 2))
-
-        heat_map = sns.heatmap(finMat, vmin= 0, vmax = 1, cmap='gist_ncar')
+        heat_map = sns.heatmap(finMat,cmap='gist_ncar')
+        heat_map.set_title("Cluster " + str(i))
+        #heat_map = plt.subplots(i)
+        #plt.ion()
         plt.show()
+
+
 
 kmeans(3)
