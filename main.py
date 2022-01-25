@@ -8,7 +8,7 @@ import numpy as np
 # Main function
 def kmeans(k):
     # image to be used
-    image = cv2.imread(r"C:\Users\Cullen\Pictures\Camera Roll\PicOfMe.PNG")
+    image = cv2.imread(r"/Users/cullenfitzgerald/Downloads/PicOfMe.PNG")
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     # reshape image matrix
@@ -37,22 +37,7 @@ def kmeans(k):
             finMat.append(tot)
         finMat = np.reshape(finMat, (-1, 2))
 
-        heat_map = sns.heatmap(finMat, vmin= 0, vmax = 1,center=0, cmap='gist_ncar')
+        heat_map = sns.heatmap(finMat, vmin= 0, vmax = 1, cmap='gist_ncar')
         plt.show()
-
-
-        #print(finMat)
-
-
-
-
-
-    """print(finArr[0][0])
-    print(finArr[1][0])
-    print(finArr[2][0])
-    print(finArr[3][0])"""
-
-    #print(finMat)
-
 
 kmeans(3)
