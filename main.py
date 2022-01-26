@@ -8,7 +8,7 @@ import numpy as np
 # Main function
 def kmeans(k):
     # image to be used
-    image = cv2.imread(r"/Users/cullenfitzgerald/Downloads/PicOfMe.PNG")
+    image = cv2.imread(r"C:\Users\Cullen\Pictures\Camera Roll\PicOfMe.PNG")
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     # reshape image matrix
@@ -42,7 +42,5 @@ def kmeans(k):
         #heat_map = plt.subplots(i)
         #plt.ion()
         plt.show()
-
-
 
 kmeans(3)
